@@ -12,9 +12,9 @@ name: OpenWrt-CI
 on:
   schedule:
     - cron: 0 20 * * *
-  # push:
-  #   branches: 
-  #     - master
+  push:
+   branches: 
+     - master
 
 jobs:
   build:
@@ -63,7 +63,10 @@ jobs:
         run: |
           rm -f ./.config*
           touch ./.config
-
+        run: |
+          git remote add openwrt https://github.com/coolsnowwolf/lede.git
+          git pull openwrt master
+          git remote -v
           #
           # ========================固件定制部分========================
           # 
